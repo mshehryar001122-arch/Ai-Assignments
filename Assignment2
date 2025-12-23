@@ -1,0 +1,42 @@
+########### QNO1###########
+def Total(lst):
+    total = 0
+    for i in lst:
+        if isinstance(i, list):
+            total += Total(i)   # recursive call for nested list
+        else:
+            total += i
+    return total
+
+# Example list
+lst = [1, [2, [3, 4], 5], 6]
+print(f"Total is {Total(lst)}")
+########### QNO2###########
+
+Products = {
+ "Electronics": {"Laptop": 1200, "Phone": 800},
+ "Clothes": {"Shirt": 50, "Shoes": 100},
+ "Grocery": {"Rice": 20, "Milk": 10}
+}
+max_price=0
+max_product=""
+for products,items in Products.items():
+    for category,price in items.items():
+        if price>max_price:
+            max_price=price
+            max_product=category
+print(max_product,"-",max_price)
+
+########### QNO3###########
+def count_frequency(lst):
+    freq = {}
+
+    for i in lst:
+        if isinstance(i, list):
+            inner_freq = count_frequency(i)
+            for key, value in inner_freq.items():
+                freq[key] = freq.get(key, 0) + value
+        else:
+            freq[i] = freq.get(i, 0) + 1
+    return freq
+print(count_frequency(lst))
